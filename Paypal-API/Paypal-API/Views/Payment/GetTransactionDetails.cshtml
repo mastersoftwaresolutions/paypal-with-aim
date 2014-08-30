@@ -1,0 +1,20 @@
+﻿@model Paypal_API.Models.TransactionModel
+@{
+    ViewBag.Title = "GetTransactionDetails";
+    Layout = "~/Views/layout.cshtml";
+}
+
+<h2>GetTransactionDetails</h2>
+
+<table>
+    <tr><th>Transaction Id</th><th>Payer Name</th><th>Transaction Status</th><th>Time</th><th>Transaction Type</th><th>Net Amount</th><th>Gross Amount</th><th colspan="2"><th</tr>
+    @foreach(var item in  ViewBag.PendingTransaction)
+    { 
+    <tr>
+        <td>@item.TransactionId</td><td>@item.PayerName</td><td>@item.TransactionStatus</td><td>@item.Time</td><td>@item.TransactionType</td><td>@item.NetAmount</td><td>@item.GrossAmount</td>
+        <td>@Html.ActionLink("Capture", "DoCapture", new { transactionId = @item.TransactionId, currencyCode = @item.CurrencyCode, amount = @item.ItemCost })</td>
+    <td>@Html.ActionLink("Void Transaction", "DenyTransaction", new { transactionId = @item.TransactionId })</td>
+    </tr>
+
+    }
+</table>

@@ -1,0 +1,69 @@
+﻿@model Paypal_API.Models.TransactionModel
+@{
+    ViewBag.Title = "CreateOrder";
+    Layout = "~/Views/layout.cshtml";
+}
+
+<h2>CreateOrder</h2>
+@using (Html.BeginForm("CreateOrder", "Payment", FormMethod.Post))
+{
+<table>
+    <tr><td> Buyer Email : </td><td>@Html.TextBoxFor(m => m.BuyerEmail)</td></tr>
+</table>
+
+<fieldset>
+    <legend>Shipping address (if different from buyer's PayPal account address)</legend>
+    <table>
+        
+        <tr><td> Name : </td><td>@Html.TextBoxFor(m => m.name)</td>
+        <tr><td> Street1 : </td><td>@Html.TextBoxFor(m => m.Street1)</td></tr>
+        <tr><td> street2 : </td><td>@Html.TextBoxFor(m => m.Street2)</td>
+       <td> City : </td><td>@Html.TextBoxFor(m => m.CityName)</td></tr>
+        <tr><td> Country : </td><td>@Html.TextBoxFor(m => m.Country)</td>
+        <tr><td> Postal Code : </td><td>@Html.TextBoxFor(m => m.PostalCode)</td></tr>
+        <tr><td> State : </td><td>@Html.TextBoxFor(m => m.StateOrProvince)</td>
+      <td> Phone : </td><td>@Html.TextBoxFor(m => m.Phone)</td></tr>
+    </table>
+</fieldset>
+    
+    <fieldset>
+    <legend>Payment details</legend>
+    <table>
+
+        <tr><td> Payment currency code: </td>
+        <td>@Html.TextBoxFor(m => m.CurrencyCode)</td>
+        <td>Total shipping costs : </td>
+        <td>@Html.TextBoxFor(m => m.ShippingTotalCost)</td>
+        </tr>
+
+        <tr><td> Total insurance cost : </td><td>@Html.TextBoxFor(m => m.InsurenceTotal)</td>
+        <tr><td> Total handling cost : </td><td>@Html.TextBoxFor(m => m.HandlingTotal)</td></tr>
+        <tr><td> Total Tax : </td><td>@Html.TextBoxFor(m => m.TaxTotal)</td>
+       <td> Order description : </td><td>@Html.TextBoxFor(m => m.OrderDescription)</td></tr>
+       
+
+     
+    </table>
+</fieldset>
+    
+    
+<fieldset>
+    <legend>Item details</legend>
+    <table>
+
+        <tr><td> Item Name: </td>
+        <td>@Html.TextBoxFor(m => m.ItemName)</td>
+        <td>Cost : </td>
+        <td>@Html.TextBoxFor(m => m.ItemCost)</td>
+        </tr>
+
+        <tr><td> Quantity : </td><td>@Html.TextBoxFor(m => m.Quantity)</td>
+        <tr><td> Sales tax : </td><td>@Html.TextBoxFor(m => m.SalesTax)</td></tr>
+        <tr><td> Item Category : </td><td>@Html.TextBoxFor(m => m.ItemCategory) <span>(eg PHYSICAL/DIGITAL)</span></td>
+       <td> Description (optional) : </td><td>@Html.TextBoxFor(m => m.ItemDescription)</td></tr>
+        <tr><td colspan="2"> Billing Agreement (Required for Recurring payments/Reference transactions only) <br />@Html.TextAreaFor(m => m.BillingAgreement)</td>
+<tr><td colspan="2"> <input type="submit" value="submit" /></td>
+       </tr>
+    </table>
+</fieldset>
+}
